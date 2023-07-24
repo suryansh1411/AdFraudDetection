@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 public class IPDetail {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String ipAddress;
     private boolean fraud;

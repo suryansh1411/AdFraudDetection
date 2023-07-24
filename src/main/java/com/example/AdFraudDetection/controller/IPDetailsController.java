@@ -2,6 +2,7 @@ package com.example.AdFraudDetection.controller;
 
 import com.example.AdFraudDetection.Class.IPDetail;
 import com.example.AdFraudDetection.repository.IPRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
@@ -27,11 +28,17 @@ public class IPDetailsController {
         return ipRepo.findAll();
     }
 
+
+
     @PostMapping("/api/ipDetails")
-    public void addIpDetails(@RequestHeader HttpHeaders headers)
+    public IPDetail addIpDetails(HttpServletRequest request)
     {
-        System.out.println(headers.getHost());
-        System.out.println(headers.getRange());
-        System.out.println(headers.getLocation());
+        String ipAddr = request.getHeader("ipAddr");
+        String country = request.getHeader("country");
+
+        IPDetail newIpDetail = new IPDetail(ipAddr, true, country);
+        ipRepo.save(newIpDetail);
+
+        return newIpDetail;
     }
 }
