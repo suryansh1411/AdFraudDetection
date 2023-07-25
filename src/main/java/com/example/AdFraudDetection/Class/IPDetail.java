@@ -23,7 +23,7 @@ public class IPDetail {
     protected boolean fraud;
     protected String country;
 
-    public IPDetail(){this.fraud= true;}
+    public IPDetail(){}
     public IPDetail(String ipAddress, boolean fraud, String country) {
         this.ipAddress = ipAddress;
         this.fraud = fraud;

@@ -41,14 +41,11 @@ public class IPDetailsController {
     {
         String ipAddr = request.getHeader("ipAddr");
         IPData ipdata= ipDataRepo.findByIpAddress(ipAddr);
-        IPDetail newIpDetail;
-        System.out.println(ipdata);
         if(ipdata != null) {
-            newIpDetail = new IPDetail(ipAddr, ipdata.isFraud(), ipdata.getCountry());
+            IPDetail newIpDetail = new IPDetail(ipAddr, ipdata.isFraud(), ipdata.getCountry());
             ipRepo.save(newIpDetail);
             return newIpDetail;
         }
-
-        return new IPDetail();
+        return null;
     }
 }
