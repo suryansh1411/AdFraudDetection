@@ -1,6 +1,8 @@
 package com.example.AdFraudDetection.controller;
 
+import com.example.AdFraudDetection.Class.IPData;
 import com.example.AdFraudDetection.Class.IPDetail;
+import com.example.AdFraudDetection.repository.IPDataRepository;
 import com.example.AdFraudDetection.repository.IPRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +11,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static java.lang.constant.ConstantDescs.NULL;
+
 @RestController
 public class IPDetailsController {
 
     @Autowired
     private IPRepository ipRepo;
+    @Autowired
+    private IPDataRepository ipDataRepo;
 
 
     @GetMapping("/api")
@@ -34,11 +40,15 @@ public class IPDetailsController {
     public IPDetail addIpDetails(HttpServletRequest request)
     {
         String ipAddr = request.getHeader("ipAddr");
-        String country = request.getHeader("country");
+        IPData ipdata= ipDataRepo.findByIpAddress(ipAddr);
+        IPDetail newIpDetail;
+        System.out.println(ipdata);
+        if(ipdata != null) {
+            newIpDetail = new IPDetail(ipAddr, ipdata.isFraud(), ipdata.getCountry());
+            ipRepo.save(newIpDetail);
+            return newIpDetail;
+        }
 
-        IPDetail newIpDetail = new IPDetail(ipAddr, true, country);
-        ipRepo.save(newIpDetail);
-
-        return newIpDetail;
+        return new IPDetail();
     }
 }

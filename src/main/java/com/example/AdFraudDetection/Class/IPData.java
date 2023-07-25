@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 @Table(name = "ip_data")
 public class IPData extends IPDetail{
 
+    public IPData (){};
     public IPData(String ipAddress, boolean fraud, String country)
     {
         this.ipAddress = ipAddress;
