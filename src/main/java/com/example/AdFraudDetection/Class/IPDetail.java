@@ -4,23 +4,24 @@ import jakarta.persistence.*;
 import jakarta.persistence.Id;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "ipdetails")
 public class IPDetail {
 
     @Id
     @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
+            name = "ip_sequence",
+            sequenceName = "ip_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence "
+            generator = "ip_sequence"
     )
-    private Long id;
-    private String ipAddress;
-    private boolean fraud;
-    private String country;
+    protected Long id;
+    protected String ipAddress;
+    protected boolean fraud;
+    protected String country;
 
     public IPDetail(){}
     public IPDetail(String ipAddress, boolean fraud, String country) {
