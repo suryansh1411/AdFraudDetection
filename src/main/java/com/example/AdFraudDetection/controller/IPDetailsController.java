@@ -4,10 +4,12 @@ import com.example.AdFraudDetection.Class.IPData;
 import com.example.AdFraudDetection.Class.IPDetail;
 import com.example.AdFraudDetection.repository.IPDataRepository;
 import com.example.AdFraudDetection.repository.IPRepository;
+import com.google.gson.Gson;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
+import redis.clients.jedis.Jedis;
 
 import java.util.List;
 
@@ -18,8 +20,20 @@ public class IPDetailsController {
 
     @Autowired
     private IPRepository ipRepo;
+
+
+    private static Jedis jedis;
+
     @Autowired
-    private IPDataRepository ipDataRepo;
+    IPDetailsController(Jedis jedis)
+    {
+        this.jedis = jedis;
+    }
+
+    public IPData convertJsonToObject(String jsonString) {
+        Gson gson = new Gson();
+        return gson.fromJson(jsonString, IPData.class);
+    }
 
 
     @GetMapping("/api")
@@ -34,13 +48,12 @@ public class IPDetailsController {
         return ipRepo.findAll();
     }
 
-
-
     @PostMapping("/api/ipDetails")
     public IPDetail addIpDetails(HttpServletRequest request)
     {
         String ipAddr = request.getHeader("ipAddr");
-        IPData ipdata= ipDataRepo.findByIpAddress(ipAddr);
+        IPData ipdata= convertJsonToObject(jedis.get(ipAddr));
+
         if(ipdata != null) {
             IPDetail newIpDetail = new IPDetail(ipAddr, ipdata.isFraud(), ipdata.getCountry());
             ipRepo.save(newIpDetail);

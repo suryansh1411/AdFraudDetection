@@ -3,6 +3,7 @@ package com.example.AdFraudDetection.Class;
 import jakarta.persistence.*;
 import jakarta.persistence.Id;
 
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "ipdetails")
