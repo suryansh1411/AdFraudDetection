@@ -21,7 +21,7 @@ public class IPDetailsController {
     @Autowired
     private IPRepository ipRepo;
 
-
+//    @Autowired
     private static Jedis jedis;
 
     @Autowired
@@ -53,12 +53,12 @@ public class IPDetailsController {
     {
         String ipAddr = request.getHeader("ipAddr");
         IPData ipdata= convertJsonToObject(jedis.get(ipAddr));
-
-        if(ipdata != null) {
-            IPDetail newIpDetail = new IPDetail(ipAddr, ipdata.isFraud(), ipdata.getCountry());
-            ipRepo.save(newIpDetail);
-            return newIpDetail;
-        }
+        System.out.println(ipdata.getIpAddress());
+//        if(ipdata != null) {
+//            IPDetail newIpDetail = new IPDetail(ipAddr, ipdata.isFraud(), ipdata.getCountry());
+//            ipRepo.save(newIpDetail);
+//            return newIpDetail;
+//        }
         return null;
     }
 }
