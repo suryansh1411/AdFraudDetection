@@ -52,13 +52,26 @@ public class IPDetailsController {
     public IPDetail addIpDetails(HttpServletRequest request)
     {
         String ipAddr = request.getHeader("ipAddr");
+        String connection = request.getHeader("Connection");
+        String user_agent = request.getHeader("User-Agent");
+        String accept_encoding = request.getHeader("Accept-Encoding");
+
         IPData ipdata= convertJsonToObject(jedis.get(ipAddr));
         System.out.println(ipdata.getIpAddress());
-//        if(ipdata != null) {
-//            IPDetail newIpDetail = new IPDetail(ipAddr, ipdata.isFraud(), ipdata.getCountry());
-//            ipRepo.save(newIpDetail);
-//            return newIpDetail;
-//        }
+
+        if(ipdata != null) {
+
+            IPDetail newIpDetail = new IPDetail();
+            newIpDetail.setIpData(ipdata);
+            newIpDetail.setConnection(connection);
+            newIpDetail.setAccept_encoding(accept_encoding);
+            newIpDetail.setUser_agent(user_agent);
+
+            ipRepo.save(newIpDetail);
+            System.out.println(newIpDetail.getId());
+            return newIpDetail;
+        }
+
         return null;
     }
 }

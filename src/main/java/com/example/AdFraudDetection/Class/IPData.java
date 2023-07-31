@@ -52,5 +52,7 @@ public class IPData {
     }
 
 
-
+    public Long getId() {
+        return id;
+    }
 }
