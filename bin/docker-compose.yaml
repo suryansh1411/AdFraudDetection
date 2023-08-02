@@ -34,7 +34,7 @@ services:
 #    volumes:
 #      - ./prometheus-config:/etc/prometheus
     command:
-      - '--config.file=/Users/suryansh.singh/SpringBoot/AdFraudDetection/bin/prometheus.yaml'
+      - '--config.file=/app/AdFraudDetection/bin/prometheus.yaml'
 
 #networks:
 #  default:
