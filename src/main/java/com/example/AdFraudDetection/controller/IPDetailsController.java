@@ -55,7 +55,7 @@ public class IPDetailsController {
         String connection = request.getHeader("Connection");
         String user_agent = request.getHeader("User-Agent");
         String accept_encoding = request.getHeader("Accept-Encoding");
-
+        System.out.println(jedis.get(ipAddr));
         IPData ipdata= convertJsonToObject(jedis.get(ipAddr));
         System.out.println(ipdata.getIpAddress());
 

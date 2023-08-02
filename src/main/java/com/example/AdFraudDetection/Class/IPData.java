@@ -1,10 +1,12 @@
 package com.example.AdFraudDetection.Class;
 
 import jakarta.persistence.*;
+import org.springframework.data.redis.core.RedisHash;
 
 
 @Entity(name = "ip_data")
 @Table(name = "ip_data")
+//@RedisHash
 public class IPData {
     @Id
     @SequenceGenerator(

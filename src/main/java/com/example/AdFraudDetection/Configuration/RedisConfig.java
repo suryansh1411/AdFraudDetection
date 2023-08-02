@@ -32,12 +32,13 @@ public class RedisConfig {
         JedisPool pool = new JedisPool("redis", 6379);
         Jedis jedis = pool.getResource();
 
-
+        System.out.println(ipDataRepo.findAll().size());
         for(IPData ipData : ipDataRepo.findAll())
         {
             String strIPData = convertObjectToJson(ipData);
             jedis.set(ipData.getIpAddress(), strIPData);
         }
+
 
         return jedis;
     }

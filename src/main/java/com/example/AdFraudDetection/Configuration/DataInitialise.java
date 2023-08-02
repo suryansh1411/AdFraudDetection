@@ -5,18 +5,20 @@ import com.example.AdFraudDetection.Class.IPDetail;
 import com.example.AdFraudDetection.repository.IPDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Configuration
 @Component
 public class DataInitialise implements CommandLineRunner {
 
     @Autowired
     private IPDataRepository ipDataRepo;
+
     @Override
     public void run(String... args)
     {
@@ -32,8 +34,6 @@ public class DataInitialise implements CommandLineRunner {
             }
         }
 
-        ipDataRepo.saveAll(ipDataList);
+//        ipDataRepo.saveAll(ipDataList);
     }
-
-
 }

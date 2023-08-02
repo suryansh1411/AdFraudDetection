@@ -3,12 +3,14 @@ version: '3.8'
 services:
   # Spring Boot Application
   spring-app:
-    image: my_image:v1
+    image: ad_fraud_detection:v1
     ports:
       - "8080:8080"
     depends_on:
       - postgres
       - redis
+
+
 
   # PostgreSQL Database
   postgres:
@@ -19,6 +21,8 @@ services:
       POSTGRES_DB: ipdetailsdb
     volumes:
       - pg-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
   # Redis Cache Server
   redis:
@@ -34,7 +38,9 @@ services:
 #    volumes:
 #      - ./prometheus-config:/etc/prometheus
     command:
-      - '--config.file=/app/AdFraudDetection/bin/prometheus.yaml'
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    volumes:
+      - '/Users/suryansh.singh/SpringBoot/AdFraudDetection/bin/prometheus.yaml:/etc/prometheus/prometheus.yml'
 
 #networks:
 #  default:
