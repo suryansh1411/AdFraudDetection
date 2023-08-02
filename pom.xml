@@ -65,6 +65,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<!-- Set the output directory for the JAR file -->
+					<outputDirectory>bin/</outputDirectory>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

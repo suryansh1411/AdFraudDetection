@@ -28,8 +28,10 @@ public class RedisConfig {
     @Bean
     public Jedis connectionFactory()
     {
-        JedisPool pool = new JedisPool("localhost", 6379);
+//        JedisPool pool = new JedisPool("localhost", 6379);
+        JedisPool pool = new JedisPool("redis", 6379);
         Jedis jedis = pool.getResource();
+
 
         for(IPData ipData : ipDataRepo.findAll())
         {
