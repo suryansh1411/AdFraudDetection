@@ -35,17 +35,11 @@ services:
     image: prom/prometheus:latest
     ports:
       - "9090:9090"
-#    volumes:
-#      - ./prometheus-config:/etc/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     volumes:
       - '/Users/suryansh.singh/SpringBoot/AdFraudDetection/bin/prometheus.yaml:/etc/prometheus/prometheus.yml'
 
-#networks:
-#  default:
-#    external:
-#      name: custom_network
 
 volumes:
   pg-data:

@@ -1,0 +1,12 @@
+
+apiVersion: ad_fraud_detection/v1
+kind: Service
+metadata:
+  name: spring-app
+spec:
+  selector:
+    app: spring-app
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer
