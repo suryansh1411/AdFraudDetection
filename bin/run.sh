@@ -1,10 +1,16 @@
 cd ..
 mvn clean install -DskipTests
-docker build --tag=ad_fraud_detection:v1 ./bin/
-cd bin
+docker rmi suryanshsingh/ad_fraud_detection:v1 -f
+docker build --tag=suryanshsingh/ad_fraud_detection:v1 ./bin/
 
-docker tag bb6c5dc3fdba suryanshsingh/ad_fraud_detection:v1
+#cd bin
 docker login --username suryanshsingh --password Devansh_123
 docker push suryanshsingh/ad_fraud_detection:v1
+#
+#cd ..
+#minikube restart
+#kubectl apply -f kube
+#kubectl rollout restart deployment
+#kubectl get pods
 
-docker-compose up --build
+#docker-compose up --build

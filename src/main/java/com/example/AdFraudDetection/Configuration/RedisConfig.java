@@ -28,9 +28,14 @@ public class RedisConfig {
     @Bean
     public Jedis connectionFactory()
     {
+//        localhost
 //        JedisPool pool = new JedisPool("localhost", 6379);
-        JedisPool pool = new JedisPool("redis", 6379);
-        Jedis jedis = pool.getResource();
+//        docker
+//        JedisPool pool = new JedisPool("redis", 6379);
+//        kubernetes
+        System.out.println("hi");
+        JedisPool pool = new JedisPool("redis-service", 6379);
+        Jedis jedis= pool.getResource();
 
         System.out.println(ipDataRepo.findAll().size());
         for(IPData ipData : ipDataRepo.findAll())
