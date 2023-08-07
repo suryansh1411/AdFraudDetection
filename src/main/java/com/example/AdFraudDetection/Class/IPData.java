@@ -1,7 +1,7 @@
 package com.example.AdFraudDetection.Class;
 
 import jakarta.persistence.*;
-import org.springframework.data.redis.core.RedisHash;
+//import org.springframework.data.redis.core.RedisHash;
 
 
 @Entity(name = "ip_data")

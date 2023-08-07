@@ -1,0 +1,34 @@
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: redis-deployment
+#spec:
+#  replicas: 1  # Set the desired number of replicas
+#  selector:
+#    matchLabels:
+#      app: redis
+#  template:
+#    metadata:
+#      labels:
+#        app: redis
+#    spec:
+#      containers:
+#        - name: redis
+#          image: redis:latest  # Replace with your Docker image URL
+#          ports:
+#            - containerPort: 6379  # The port your Spring Boot app listens on
+#
+#
+#---
+#
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: redis-service
+#spec:
+#  selector:
+#    app: redis
+#  ports:
+#    - port: 6379
+#      targetPort: 6379
+#  type: NodePort

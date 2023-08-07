@@ -34,6 +34,6 @@ public class DataInitialise implements CommandLineRunner {
             }
         }
 
-//        ipDataRepo.saveAll(ipDataList);
+        ipDataRepo.saveAll(ipDataList);
     }
 }
