@@ -24,11 +24,11 @@ public class IPDetailsController {
 //    @Autowired
     private static Jedis jedis;
 
-//    @Autowired
-//    IPDetailsController(Jedis jedis)
-//    {
-//        this.jedis = jedis;
-//    }
+    @Autowired
+    IPDetailsController(Jedis jedis)
+    {
+        this.jedis = jedis;
+    }
 
     public IPData convertJsonToObject(String jsonString) {
         Gson gson = new Gson();

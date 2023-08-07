@@ -25,10 +25,10 @@ spec:
               value: postgres
             - name: SPRING_DATASOURCE_PASSWORD
               value: postgres
-#            - name: SPRING_REDIS_HOST
-#              value: redis-service
-#            - name: SPRING_REDIS_PORT
-#              value: "6379"
+            - name: SPRING_REDIS_HOST
+              value: redis-service
+            - name: SPRING_REDIS_PORT
+              value: "6379"
 
 ---
 
