@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # Spring Boot Application
   spring-app:
-    image: ad_fraud_detection:v1
+    image: suryanshsingh/ad_fraud_detection:v2
     ports:
       - "8080:8080"
     depends_on:
