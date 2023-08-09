@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: spring-app
-          image: suryanshsingh/ad_fraud_detection:v1  # Replace with your Docker image URL
+          image: suryanshsingh/ad_fraud_detection:v3  # Replace with your Docker image URL
           ports:
             - containerPort: 8080  # The port your Spring Boot app listens on
           imagePullPolicy: Always
