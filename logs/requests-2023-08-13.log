@@ -1,0 +1,2 @@
+2023-08-13 23:59:47 [http-nio-8080-exec-1] INFO  c.e.A.controller.IPDetailsController - {"id":null,"ipData":{"id":3,"ipAddress":"0.0.0.2","fraud":false,"country":"India"},"accept_encoding":"gzip, deflate, br","connection":"keep-alive","user_agent":"PostmanRuntime/7.32.3"}
+2023-08-13 23:59:54 [http-nio-8080-exec-3] INFO  c.e.A.controller.IPDetailsController - {"id":null,"ipData":{"id":126,"ipAddress":"0.0.0.125","fraud":false,"country":"India"},"accept_encoding":"gzip, deflate, br","connection":"keep-alive","user_agent":"PostmanRuntime/7.32.3"}

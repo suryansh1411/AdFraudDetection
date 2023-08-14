@@ -5,7 +5,6 @@ import com.example.AdFraudDetection.repository.IPDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.scheduling.annotation.Scheduled;
 import redis.clients.jedis.JedisPool;

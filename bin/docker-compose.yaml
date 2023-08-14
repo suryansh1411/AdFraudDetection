@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # Spring Boot Application
   spring-app:
-    image: suryanshsingh/ad_fraud_detection:v2
+    image: suryanshsingh/ad_fraud_detection:v3
     ports:
       - "8080:8080"
     depends_on:
@@ -11,7 +11,8 @@ services:
       #      - redis-service
       - postgres
       - redis
-
+    volumes:
+      - '/Users/suryansh.singh/SpringBoot/AdFraudDetection/logs/requests.log:/app/logs/requests.log'
 
 
 

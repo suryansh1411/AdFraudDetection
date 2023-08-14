@@ -2,17 +2,17 @@ package com.example.AdFraudDetection.controller;
 
 import com.example.AdFraudDetection.Class.IPData;
 import com.example.AdFraudDetection.Class.IPDetail;
-import com.example.AdFraudDetection.repository.IPDataRepository;
 import com.example.AdFraudDetection.repository.IPRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import static java.lang.constant.ConstantDescs.NULL;
 
 @RestController
@@ -24,6 +24,8 @@ public class IPDetailsController {
 //    @Autowired
     private static Jedis jedis;
 
+    private static final Logger logger = LoggerFactory.getLogger(IPDetailsController.class);
+    private static final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     IPDetailsController(Jedis jedis)
     {
@@ -49,8 +51,7 @@ public class IPDetailsController {
     }
 
     @PostMapping("/api/ipDetails")
-    public IPDetail addIpDetails(HttpServletRequest request)
-    {
+    public IPDetail addIpDetails(HttpServletRequest request) throws JsonProcessingException {
         String ipAddr = request.getHeader("ipAddr");
         String connection = request.getHeader("Connection");
         String user_agent = request.getHeader("User-Agent");
@@ -67,10 +68,14 @@ public class IPDetailsController {
             newIpDetail.setAccept_encoding(accept_encoding);
             newIpDetail.setUser_agent(user_agent);
 
+            String jsonData = objectMapper.writeValueAsString(newIpDetail);
+            logger.info(jsonData);
+
             ipRepo.save(newIpDetail);
             System.out.println(newIpDetail.getId());
             return newIpDetail;
         }
+
 
         return null;
     }
