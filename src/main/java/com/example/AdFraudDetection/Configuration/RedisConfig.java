@@ -36,10 +36,10 @@ public class RedisConfig{
 //        localhost
 //        JedisPool pool = new JedisPool("localhost", 6379);
 //        docker
-//        JedisPool pool = new JedisPool("redis", 6379);
+        JedisPool pool = new JedisPool("redis", 6379);
 //        kubernetes
         System.out.println("hi");
-        JedisPool pool = new JedisPool("redis-service", 6379);
+//        JedisPool pool = new JedisPool("redis-service", 6379);
         jedis= pool.getResource();
 
 

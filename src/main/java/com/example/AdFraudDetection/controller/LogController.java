@@ -39,20 +39,20 @@ public class LogController {
     public void uploadlog()
     {
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedDateTime = now.format(formatter);
-        String blobName = "requests-"+formattedDateTime;
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDateTime1 = now.format(formatter1);
+        String formattedDateTime2 = now.format(formatter2);
+        String blobName = "logs/"+ formattedDateTime2 +"/requests-"+formattedDateTime1;
 
         BlobClient blobClient = blobContainerClient.getBlobClient(blobName);
         String filePath = "./logs/requests.log";
-        String content = "Hello from docker";
-        InputStream contentStream = new ByteArrayInputStream(content.getBytes());
-        blobClient.upload(contentStream, content.length());
 
         //Upload the log file
         File file = new File(filePath);
         try {
             FileInputStream inputStream = new FileInputStream(file);
+            if(file.length()==0) return ;
             blobClient.upload(inputStream, file.length(),true);
         }
         catch (IOException e){
